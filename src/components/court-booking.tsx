@@ -133,7 +133,11 @@ export function CourtBooking({ courtId }: { courtId: string }) {
 
       <div className="mt-6">
         {loading ? (
-          <p className="text-sm text-gray-500">Loading slots...</p>
+          <div className="grid animate-pulse grid-cols-2 gap-3 sm:grid-cols-3">
+            {Array.from({ length: 6 }, (_, i) => (
+              <div key={i} className="h-[72px] rounded-xl border border-gray-100 bg-gray-50" />
+            ))}
+          </div>
         ) : slots.length === 0 ? (
           <p className="text-sm text-gray-500">This court isn&apos;t open on the selected date.</p>
         ) : (

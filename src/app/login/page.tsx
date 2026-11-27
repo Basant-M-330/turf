@@ -4,6 +4,8 @@ import { useState, Suspense } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { LogIn } from "lucide-react";
+import { AuthCard } from "@/components/auth-card";
 
 function LoginForm() {
   const router = useRouter();
@@ -30,8 +32,7 @@ function LoginForm() {
   }
 
   return (
-    <div className="mx-auto max-w-sm">
-      <h1 className="mb-6 text-2xl font-semibold">Sign in</h1>
+    <AuthCard icon={LogIn} title="Sign in">
       <form onSubmit={onSubmit} className="space-y-4">
         <div>
           <label className="block text-sm font-medium text-gray-700">Email</label>
@@ -40,7 +41,7 @@ function LoginForm() {
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2"
+            className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
           />
         </div>
         <div>
@@ -55,7 +56,7 @@ function LoginForm() {
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2"
+            className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
           />
         </div>
         {error && <p className="text-sm text-red-600">{error}</p>}
@@ -67,13 +68,13 @@ function LoginForm() {
           {loading ? "Signing in..." : "Sign in"}
         </button>
       </form>
-      <p className="mt-4 text-sm text-gray-600">
+      <p className="mt-4 text-center text-sm text-gray-600">
         No account?{" "}
         <Link href="/register" className="text-emerald-700 underline">
           Sign up
         </Link>
       </p>
-    </div>
+    </AuthCard>
   );
 }
 

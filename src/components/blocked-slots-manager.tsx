@@ -61,7 +61,7 @@ export function BlockedSlotsManager({ courts }: { courts: { id: string; name: st
           <select
             value={courtId}
             onChange={(e) => setCourtId(e.target.value)}
-            className="mt-1 rounded-md border border-gray-300 px-3 py-2"
+            className="mt-1 rounded-md border border-gray-300 px-3 py-2 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
           >
             {courts.map((c) => (
               <option key={c.id} value={c.id}>
@@ -76,7 +76,7 @@ export function BlockedSlotsManager({ courts }: { courts: { id: string; name: st
             type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
-            className="mt-1 rounded-md border border-gray-300 px-3 py-2"
+            className="mt-1 rounded-md border border-gray-300 px-3 py-2 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
           />
         </div>
       </div>
@@ -106,7 +106,7 @@ export function BlockedSlotsManager({ courts }: { courts: { id: string; name: st
             type="time"
             value={form.startTime}
             onChange={(e) => setForm({ ...form, startTime: e.target.value })}
-            className="mt-1 rounded-md border border-gray-300 px-3 py-2"
+            className="mt-1 rounded-md border border-gray-300 px-3 py-2 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
           />
         </div>
         <div>
@@ -114,7 +114,7 @@ export function BlockedSlotsManager({ courts }: { courts: { id: string; name: st
           <input
             value={form.reason}
             onChange={(e) => setForm({ ...form, reason: e.target.value })}
-            className="mt-1 rounded-md border border-gray-300 px-3 py-2"
+            className="mt-1 rounded-md border border-gray-300 px-3 py-2 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
           />
         </div>
         <button

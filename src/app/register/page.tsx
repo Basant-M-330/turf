@@ -4,6 +4,8 @@ import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { UserPlus } from "lucide-react";
+import { AuthCard } from "@/components/auth-card";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -36,8 +38,7 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="mx-auto max-w-sm">
-      <h1 className="mb-6 text-2xl font-semibold">Create an account</h1>
+    <AuthCard icon={UserPlus} title="Create an account">
       <form onSubmit={onSubmit} className="space-y-4">
         <div>
           <label className="block text-sm font-medium text-gray-700">Name</label>
@@ -45,7 +46,7 @@ export default function RegisterPage() {
             required
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
-            className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2"
+            className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
           />
         </div>
         <div>
@@ -55,7 +56,7 @@ export default function RegisterPage() {
             required
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
-            className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2"
+            className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
           />
         </div>
         <div>
@@ -63,7 +64,7 @@ export default function RegisterPage() {
           <input
             value={form.phone}
             onChange={(e) => setForm({ ...form, phone: e.target.value })}
-            className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2"
+            className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
           />
         </div>
         <div>
@@ -74,7 +75,7 @@ export default function RegisterPage() {
             minLength={8}
             value={form.password}
             onChange={(e) => setForm({ ...form, password: e.target.value })}
-            className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2"
+            className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
           />
         </div>
         <label className="flex items-start gap-2 text-sm text-gray-600">
@@ -106,12 +107,12 @@ export default function RegisterPage() {
           {loading ? "Creating account..." : "Sign up"}
         </button>
       </form>
-      <p className="mt-4 text-sm text-gray-600">
+      <p className="mt-4 text-center text-sm text-gray-600">
         Already have an account?{" "}
         <Link href="/login" className="text-emerald-700 underline">
           Sign in
         </Link>
       </p>
-    </div>
+    </AuthCard>
   );
 }

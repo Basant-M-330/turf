@@ -138,7 +138,7 @@ export function CourtEditor({ court }: { court: CourtWithRelations }) {
                   next[i] = { ...h, openTime: e.target.value };
                   setHours(next);
                 }}
-                className="rounded-md border border-gray-300 px-2 py-1 text-sm disabled:opacity-50"
+                className="rounded-md border border-gray-300 px-2 py-1 text-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 disabled:opacity-50"
               />
               <span className="text-gray-400">to</span>
               <input
@@ -150,7 +150,7 @@ export function CourtEditor({ court }: { court: CourtWithRelations }) {
                   next[i] = { ...h, closeTime: e.target.value };
                   setHours(next);
                 }}
-                className="rounded-md border border-gray-300 px-2 py-1 text-sm disabled:opacity-50"
+                className="rounded-md border border-gray-300 px-2 py-1 text-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 disabled:opacity-50"
               />
             </div>
           ))}
@@ -184,7 +184,7 @@ export function CourtEditor({ court }: { court: CourtWithRelations }) {
           <select
             value={pricingForm.dayType}
             onChange={(e) => setPricingForm({ ...pricingForm, dayType: e.target.value })}
-            className="rounded-md border border-gray-300 px-2 py-2 text-sm"
+            className="rounded-md border border-gray-300 px-2 py-2 text-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
           >
             <option value="WEEKDAY">Weekday</option>
             <option value="WEEKEND">Weekend</option>
@@ -193,20 +193,20 @@ export function CourtEditor({ court }: { court: CourtWithRelations }) {
             type="time"
             value={pricingForm.startTime}
             onChange={(e) => setPricingForm({ ...pricingForm, startTime: e.target.value })}
-            className="rounded-md border border-gray-300 px-2 py-2 text-sm"
+            className="rounded-md border border-gray-300 px-2 py-2 text-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
           />
           <input
             type="time"
             value={pricingForm.endTime}
             onChange={(e) => setPricingForm({ ...pricingForm, endTime: e.target.value })}
-            className="rounded-md border border-gray-300 px-2 py-2 text-sm"
+            className="rounded-md border border-gray-300 px-2 py-2 text-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
           />
           <input
             type="number"
             min={1}
             value={pricingForm.pricePerSlot}
             onChange={(e) => setPricingForm({ ...pricingForm, pricePerSlot: Number(e.target.value) })}
-            className="rounded-md border border-gray-300 px-2 py-2 text-sm"
+            className="rounded-md border border-gray-300 px-2 py-2 text-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
             placeholder="Price per slot"
           />
           {pricingError && <p className="text-sm text-red-600 sm:col-span-4">{pricingError}</p>}

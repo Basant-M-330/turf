@@ -137,10 +137,21 @@ export function CheckoutFlow({
   }
 
   if (error && !booking) {
-    return <p className="text-sm text-red-600">{error}</p>;
+    return (
+      <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+        <p className="text-sm text-red-600">{error}</p>
+      </div>
+    );
   }
   if (!booking) {
-    return <p className="text-sm text-gray-500">Loading...</p>;
+    return (
+      <div className="animate-pulse rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+        <div className="h-5 w-2/3 rounded bg-gray-200" />
+        <div className="mt-2 h-4 w-1/2 rounded bg-gray-100" />
+        <div className="mt-4 h-6 w-1/3 rounded bg-gray-200" />
+        <div className="mt-6 h-10 w-full rounded-lg bg-gray-100" />
+      </div>
+    );
   }
 
   if (booking.status === "CONFIRMED" || booking.status === "PARTIALLY_PAID" || booking.status === "COMPLETED") {

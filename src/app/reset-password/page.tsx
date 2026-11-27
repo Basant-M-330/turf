@@ -3,6 +3,8 @@
 import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { KeyRound } from "lucide-react";
+import { AuthCard } from "@/components/auth-card";
 
 function ResetPasswordForm() {
   const router = useRouter();
@@ -32,11 +34,13 @@ function ResetPasswordForm() {
   }
 
   if (!token) {
-    return <p className="text-sm text-red-600">This reset link is missing its token.</p>;
+    return <p className="text-center text-sm text-red-600">This reset link is missing its token.</p>;
   }
 
   if (done) {
-    return <p className="text-sm text-gray-600">Password updated. Redirecting to sign in...</p>;
+    return (
+      <p className="text-center text-sm text-gray-600">Password updated. Redirecting to sign in...</p>
+    );
   }
 
   return (
@@ -49,7 +53,7 @@ function ResetPasswordForm() {
           minLength={8}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2"
+          className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
         />
       </div>
       {error && <p className="text-sm text-red-600">{error}</p>}
@@ -60,7 +64,7 @@ function ResetPasswordForm() {
       >
         {loading ? "Updating..." : "Update password"}
       </button>
-      <p className="text-sm text-gray-600">
+      <p className="text-center text-sm text-gray-600">
         <Link href="/login" className="text-emerald-700 underline">
           Back to sign in
         </Link>
@@ -71,11 +75,10 @@ function ResetPasswordForm() {
 
 export default function ResetPasswordPage() {
   return (
-    <div className="mx-auto max-w-sm">
-      <h1 className="mb-6 text-2xl font-semibold text-gray-900">Choose a new password</h1>
+    <AuthCard icon={KeyRound} title="Choose a new password">
       <Suspense>
         <ResetPasswordForm />
       </Suspense>
-    </div>
+    </AuthCard>
   );
 }

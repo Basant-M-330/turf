@@ -42,7 +42,7 @@ export function CreateCourtForm() {
           required
           value={form.name}
           onChange={(e) => setForm({ ...form, name: e.target.value })}
-          className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2"
+          className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
         />
       </div>
       <div>
@@ -50,7 +50,7 @@ export function CreateCourtForm() {
         <select
           value={form.sportType}
           onChange={(e) => setForm({ ...form, sportType: e.target.value })}
-          className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2"
+          className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
         >
           {SPORTS.map((s) => (
             <option key={s} value={s}>
@@ -68,7 +68,7 @@ export function CreateCourtForm() {
           step={15}
           value={form.slotDurationMinutes}
           onChange={(e) => setForm({ ...form, slotDurationMinutes: Number(e.target.value) })}
-          className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2"
+          className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
         />
       </div>
       <div className="sm:col-span-2">
@@ -76,7 +76,7 @@ export function CreateCourtForm() {
         <input
           value={form.description}
           onChange={(e) => setForm({ ...form, description: e.target.value })}
-          className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2"
+          className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
         />
       </div>
       {error && <p className="text-sm text-red-600 sm:col-span-2">{error}</p>}
