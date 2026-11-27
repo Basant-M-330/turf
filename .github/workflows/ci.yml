@@ -32,6 +32,12 @@ jobs:
 
       - run: pnpm prisma generate
 
+      # `tsc` alone doesn't know about Next's generated route/layout types (LayoutProps,
+      # PageProps, etc.) — normally created by `next dev`/`next build`. `next typegen`
+      # creates just those, cheaply, without a full build, so standalone typecheck works
+      # on a fresh checkout with no .next directory yet.
+      - run: pnpm exec next typegen
+
       - name: Typecheck
         run: pnpm exec tsc --noEmit
 
