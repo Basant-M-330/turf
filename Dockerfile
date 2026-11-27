@@ -8,7 +8,11 @@ WORKDIR /app
 FROM base AS deps
 COPY package.json pnpm-lock.yaml ./
 COPY prisma ./prisma
-ENV DATABASE_URL="postgresql://turf:turf@postgres:5432/turf"
+# Only needed so `prisma generate` (runs via postinstall) has a value to parse — it never
+# actually connects at build time. Passed in via docker-compose's `build.args`, which reads
+# it from .env; the fallback below is just a non-functional placeholder, never real credentials.
+ARG DATABASE_URL="postgresql://user:pass@localhost:5432/db"
+ENV DATABASE_URL=$DATABASE_URL
 RUN pnpm install --frozen-lockfile
 
 # --- Local development: hot-reloading dev server; source is bind-mounted over this in compose. ---
@@ -22,7 +26,8 @@ CMD ["pnpm", "dev"]
 # --- Production build ---
 FROM base AS builder
 ENV NODE_ENV=production
-ENV DATABASE_URL="postgresql://turf:turf@postgres:5432/turf"
+ARG DATABASE_URL="postgresql://user:pass@localhost:5432/db"
+ENV DATABASE_URL=$DATABASE_URL
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN pnpm prisma generate
