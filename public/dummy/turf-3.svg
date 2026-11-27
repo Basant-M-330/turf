@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#047857"/>
+      <stop offset="100%" stop-color="#022c22"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#g3)"/>
+  <g stroke="#ffffff" stroke-opacity="0.6" stroke-width="7">
+    <rect x="360" y="260" width="480" height="340"/>
+    <line x1="360" y1="430" x2="840" y2="430"/>
+  </g>
+  <g stroke="#e2e8f0" stroke-width="6" fill="none" stroke-opacity="0.8">
+    <rect x="300" y="300" width="60" height="260"/>
+    <rect x="840" y="300" width="60" height="260"/>
+  </g>
+  <g fill="#f8fafc" fill-opacity="0.12">
+    <circle cx="600" cy="430" r="150"/>
+  </g>
+  <g fill="#ffffff" fill-opacity="0.9" font-family="sans-serif">
+    <text x="60" y="110" font-size="52" font-weight="700">Goal to goal</text>
+    <text x="60" y="155" font-size="26" fill-opacity="0.75">Sample image — replace from Admin</text>
+  </g>
+</svg>

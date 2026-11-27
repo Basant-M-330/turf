@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#15803d"/>
+      <stop offset="100%" stop-color="#166534"/>
+    </linearGradient>
+    <linearGradient id="sky1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0ea5a3"/>
+      <stop offset="100%" stop-color="#15803d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#sky1)"/>
+  <g>
+    <rect y="260" width="1200" height="540" fill="url(#g1)"/>
+    <g stroke="#ffffff" stroke-opacity="0.55" stroke-width="6">
+      <rect x="120" y="300" width="960" height="460"/>
+      <line x1="600" y1="300" x2="600" y2="760"/>
+      <circle cx="600" cy="530" r="90"/>
+      <rect x="120" y="420" width="90" height="220"/>
+      <rect x="990" y="420" width="90" height="220"/>
+    </g>
+    <g fill="#ffffff" fill-opacity="0.08">
+      <rect x="120" y="300" width="80" height="460"/>
+      <rect x="280" y="300" width="80" height="460"/>
+      <rect x="440" y="300" width="80" height="460"/>
+      <rect x="600" y="300" width="80" height="460"/>
+      <rect x="760" y="300" width="80" height="460"/>
+      <rect x="920" y="300" width="80" height="460"/>
+    </g>
+  </g>
+  <g fill="#ffffff" fill-opacity="0.85" font-family="sans-serif">
+    <text x="60" y="110" font-size="56" font-weight="700">Court photo</text>
+    <text x="60" y="160" font-size="28" fill-opacity="0.75">Sample image — replace from Admin</text>
+  </g>
+</svg>

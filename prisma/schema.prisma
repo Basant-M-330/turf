@@ -1,0 +1,187 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  CUSTOMER
+  STAFF
+  ADMIN
+}
+
+enum SportType {
+  FOOTBALL
+  CRICKET
+  BADMINTON
+  TENNIS
+  BASKETBALL
+  OTHER
+}
+
+enum DayOfWeek {
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+  SUNDAY
+}
+
+enum DayType {
+  WEEKDAY
+  WEEKEND
+}
+
+enum BookingStatus {
+  HOLD
+  CONFIRMED
+  PARTIALLY_PAID
+  CANCELLED
+  EXPIRED
+  COMPLETED
+}
+
+enum PaymentType {
+  FULL
+  PARTIAL
+  PAY_AT_VENUE
+}
+
+enum PaymentStatus {
+  CREATED
+  CAPTURED
+  FAILED
+  REFUNDED
+}
+
+model User {
+  id                  String               @id @default(cuid())
+  name                String
+  email               String               @unique
+  phone               String?
+  passwordHash        String
+  role                Role                 @default(CUSTOMER)
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  bookings            Booking[]
+  passwordResetTokens PasswordResetToken[]
+  auditLogs           AuditLog[]
+}
+
+model PasswordResetToken {
+  id        String    @id @default(cuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tokenHash String    @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([userId])
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  actorId    String
+  actor      User     @relation(fields: [actorId], references: [id])
+  action     String
+  targetType String
+  targetId   String?
+  metadata   Json?
+  createdAt  DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([actorId])
+}
+
+model Court {
+  id                  String           @id @default(cuid())
+  name                String
+  sportType           SportType
+  description         String?
+  slotDurationMinutes Int              @default(60)
+  isActive            Boolean          @default(true)
+  images              String[]         @default([])
+  createdAt           DateTime         @default(now())
+  updatedAt           DateTime         @updatedAt
+  operatingHours      OperatingHours[]
+  pricingRules        PricingRule[]
+  bookings            Booking[]
+  blockedSlots        BlockedSlot[]
+}
+
+model OperatingHours {
+  id        String    @id @default(cuid())
+  courtId   String
+  court     Court     @relation(fields: [courtId], references: [id], onDelete: Cascade)
+  dayOfWeek DayOfWeek
+  openTime  String
+  closeTime String
+
+  @@unique([courtId, dayOfWeek])
+}
+
+model PricingRule {
+  id            String   @id @default(cuid())
+  courtId       String
+  court         Court    @relation(fields: [courtId], references: [id], onDelete: Cascade)
+  dayType       DayType
+  startTime     String
+  endTime       String
+  pricePerSlot  Int
+  createdAt     DateTime @default(now())
+
+  @@index([courtId, dayType])
+}
+
+model Booking {
+  id            String        @id @default(cuid())
+  courtId       String
+  court         Court         @relation(fields: [courtId], references: [id])
+  userId        String
+  user          User          @relation(fields: [userId], references: [id])
+  date          String
+  startTime     String
+  endTime       String
+  status        BookingStatus @default(HOLD)
+  paymentType   PaymentType?
+  totalAmount   Int
+  paidAmount    Int           @default(0)
+  expiresAt     DateTime?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  payments      Payment[]
+
+  @@index([courtId, date])
+  @@index([status, expiresAt])
+}
+
+model Payment {
+  id                String        @id @default(cuid())
+  bookingId         String
+  booking           Booking       @relation(fields: [bookingId], references: [id])
+  razorpayOrderId   String?       @unique
+  razorpayPaymentId String?       @unique
+  amount            Int
+  status            PaymentStatus @default(CREATED)
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+}
+
+model BlockedSlot {
+  id        String   @id @default(cuid())
+  courtId   String
+  court     Court    @relation(fields: [courtId], references: [id], onDelete: Cascade)
+  date      String
+  startTime String
+  endTime   String
+  reason    String?
+  createdAt DateTime @default(now())
+
+  @@index([courtId, date])
+}

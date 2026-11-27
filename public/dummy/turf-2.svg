@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="60%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#166534"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#sky2)"/>
+  <rect y="420" width="1200" height="380" fill="#15803d"/>
+  <g stroke="#ffffff" stroke-opacity="0.5" stroke-width="5">
+    <rect x="150" y="460" width="900" height="300"/>
+    <line x1="600" y1="460" x2="600" y2="760"/>
+  </g>
+  <g fill="#fde68a">
+    <circle cx="180" cy="120" r="10"/>
+    <circle cx="1020" cy="120" r="10"/>
+    <circle cx="180" cy="760" r="0"/>
+  </g>
+  <g stroke="#94a3b8" stroke-width="10">
+    <line x1="180" y1="120" x2="180" y2="420"/>
+    <line x1="1020" y1="120" x2="1020" y2="420"/>
+  </g>
+  <g fill="#fef3c7">
+    <polygon points="180,120 230,220 130,220" opacity="0.9"/>
+    <polygon points="1020,120 1070,220 970,220" opacity="0.9"/>
+  </g>
+  <g fill="#ffffff" fill-opacity="0.9" font-family="sans-serif">
+    <text x="60" y="520" font-size="52" font-weight="700">Floodlit evenings</text>
+    <text x="60" y="565" font-size="26" fill-opacity="0.75">Sample image — replace from Admin</text>
+  </g>
+</svg>
